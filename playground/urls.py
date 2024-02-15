@@ -5,6 +5,11 @@ from . import views
 
 urlpatterns = [
     path('', views.home,name='home'),
+    # path('/login',name="login"),
+    # path('/register',name="register"),
+    # path('/cart',name="cart"),
+    # path('/store-inventory',name='inventory'), should just show all the available products
+    # path('',name='')
 
 ]
 if settings.DEBUG:
