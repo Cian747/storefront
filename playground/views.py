@@ -18,15 +18,29 @@ def home(request):
 #     '''
 #     return render(request, 'registration/login.html')
 
-# def register_user(request):
+def register_user(request):
+    '''
+    Normal user registration.
+    '''
+    return render(request, 'registration/signup.html')
+
+# def product(request):
 #     '''
-#     Normal user registration.
+#     View all the products.
 #     '''
 #     return render(request, 'registration/register.html')
 
+# def product_detail(request,id):
+#     '''
+#     View a specific product in detail, using the id as an argument.
+#     Thee will be a possibility of viewing comments
+#     '''
+#     return render(request, 'registration/product-detail.html')
+
+
 # def cart(request):
 #     '''
-#     Normal user registration.
+#     See a specific user cart selection.
 #     '''
 #     return render(request, 'cart.html')
 
@@ -35,10 +49,4 @@ def home(request):
 #     Redirection to the payment portal.
 #     '''
 #     return render(request, 'checkout.html')
-
-# def commenting(request):
-#   '''
-#   commenting on specific products
-#   '''
-#   return render(request, 'index.html')
 

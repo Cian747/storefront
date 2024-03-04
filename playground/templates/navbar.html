@@ -1,7 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navigation">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Storefront</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="button" data-text="Awesome">
+        <a class="nav-link" aria-current="page" class="home-button" href="{% url "home" %}">
+        <span class="actual-text">&nbsp;Storefront&nbsp;</span>
+        <span aria-hidden="true" class="hover-text">&nbsp;Storefront&nbsp;</span>
+      </a>
+    </button>      
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

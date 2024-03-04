@@ -5,11 +5,21 @@ from . import views
 
 urlpatterns = [
     path('', views.home,name='home'),
+    path('/signup',views.register_user,name="signup"),
     # path('/login',name="login"),
-    # path('/register',name="register"),
     # path('/cart',name="cart"),
     # path('/store-inventory',name='inventory'), should just show all the available products
     # path('',name='')
+
+
+    # path('signup', Signup.as_view(), name='signup'),
+    # path('login', Login.as_view(), name='login'),
+    # path('logout', logout, name='logout'),
+    # path('cart', auth_middleware(Cart.as_view()), name='cart'),
+    # path('check-out', CheckOut.as_view(), name='checkout'),
+    # path('orders', auth_middleware(OrderView.as_view()), name='orders'),
+    # path('/admin', admin.site.urls)
+ 
 
 ]
 if settings.DEBUG:
