@@ -1,0 +1,63 @@
+{% extends 'registration/base.html' %}
+
+
+{% block content %}
+{% comment %} <div class="container ">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="../../../static/images/art_lover_yjfr.svg" alt="">
+        </div>
+        <div class="col-md-6">
+            <form id="register"
+                class=" form-register p-4 border mt-4 rounded-3 bg-white"
+                action="" method="post" >
+                {% csrf_token %}
+                <div class="logo d-flex justify-content-center align-items-center">
+                    <img src="../../../static/images/two-houses.png" width="45px" style="margin:2rem" height="45px" alt="">
+                </div>
+                {{ form.errors }}
+                <div class="mb-2">
+                    <div>
+                        {{ rgf.first_name }}
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div>
+                        {{ rgf.last_name }}
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div>
+                        {{ rgf.username }}
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div>
+                        {{ rgf.email }}
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div>
+                        {{ rgf.password1 }}
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div>
+                        {{ rgf.password2 }}
+                    </div>
+                </div>
+                <div class="d-grid mt-2 gap-1">
+                    <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+                </div>
+                <input type="hidden" name="next" value="{{next}}">
+            </form>
+            <div class="direct">
+                <p>Already have an account?
+                    <a href="/">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% endblock %}

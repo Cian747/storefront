@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home,name='home'),
-    path('/signup',views.register_user,name="signup"),
+    path('signup/',views.register_user,name="signup"),
     # path('/login',name="login"),
     # path('/cart',name="cart"),
     # path('/store-inventory',name='inventory'), should just show all the available products
