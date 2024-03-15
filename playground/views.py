@@ -1,4 +1,8 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
+from .forms import RegistrationForm
+from .models import Customer,Category,Product,Order
+from django.contrib import messages
 
 # Create your views here.
 
@@ -12,17 +16,42 @@ def home(request):
     }
     return render(request,'index.html', context)
 
-# def login_user(request):
-#     '''
-#     Login for a regular. If the user is a superuser then the get access to admin portal and different views
-#     '''
-#     return render(request, 'registration/login.html')
+def login_user(request):
+    '''
+    Login for a regular. If the user is a superuser then the get access to admin portal and different views
+    '''
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username = username, password = password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+    return render(request, 'registration/login.html')
 
 def register_user(request):
     '''
     Normal user registration.
     '''
-    return render(request, 'registration/signup.html')
+    rgf =RegistrationForm()
+    if request.method == 'POST':
+        rgf = RegistrationForm(request.POST)
+        if rgf.is_valid():
+            rgf.save()
+            user = rgf.cleaned_data.get('username')
+            email = rgf.cleaned_data.get('email')
+            # send_welcome_email(user,email)
+            user_profile = Customer.objects.get(user = request.user)
+            messages.success(request, 'Account was created for ' + user)
+            return redirect("login_user")
+
+        context = {
+            'rgf': rgf
+            }
+    return render(request, 'registration/signup.html', {'rgf': rgf})
 
 # def product(request):
 #     '''

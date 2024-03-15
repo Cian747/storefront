@@ -84,6 +84,10 @@ INTERNAL_IPS = [
     # ...
 ]
 
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.MD5PasswordHasher",
+]
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -99,7 +103,12 @@ DATABASES = {
         'ENGINE':'django.db.backends.postgresql',
         'NAME':'ecom',
         'USER':'postgres',
-        'PASSWORD':'ck@1254'
+        'PASSWORD':'ck@1254',
+        'TEST': {
+            'NAME': 'ecom_testdb',
+            'USER': 'postgres',
+            'PASSWORD': 'ck@1254',
+        }, 
     }
 }
 

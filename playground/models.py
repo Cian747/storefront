@@ -42,8 +42,9 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=20)
     profile_photo = CloudinaryField('image',blank=True,null=True)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10,blank=True,null=True)
     email = models.EmailField()
     password = models.CharField(max_length=100)
 
@@ -67,6 +68,9 @@ class Customer(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
  
+    def new_category(self):
+        self.save()
+
     @staticmethod
     def get_all_categories():
         return Category.objects.all()
@@ -74,39 +78,41 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=60)
     price = models.IntegerField(default=0,blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     description = models.CharField(max_length=500, default='', blank=True, null=True)
     availability = models.TextField(max_length=20)
     image = CloudinaryField('uploads/products/',blank=True,null=True)
+
+
+    def new_product(self):
+        self.save()
  
     @staticmethod
     def get_products_by_id(ids):
-        return Products.objects.filter(id__in=ids)
+        return Product.objects.filter(id__in=ids)
  
     @staticmethod
     def get_all_products():
-        return Products.objects.all()
+        return Product.objects.all()
  
     @staticmethod
     def get_all_products_by_categoryid(category_id):
         if category_id:
-            return Products.objects.filter(category=category_id)
+            return Product.objects.filter(category=category_id)
         else:
-            return Products.get_all_products()
+            return Product.get_all_products()
         
 
 class Order(models.Model):
-    product = models.ForeignKey(Products,
-                                on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer,
-                                 on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    price = models.IntegerField()
+    total_price = models.IntegerField()
     address = models.CharField(max_length=50, default='', blank=True)
-    phone = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default=0, blank=True)
     date = models.DateField(default=datetime.datetime.today)
     status = models.BooleanField(default=False)
 
